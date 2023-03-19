@@ -22,14 +22,14 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('id', 'author', 'text', 'created', 'post')
-        
+
 
 class GroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Group
         fields = ('id', 'title', 'slug', 'description')
-        
+
 
 class FollowSerializer(serializers.ModelSerializer):
     user = serializers.SlugRelatedField(
@@ -55,8 +55,8 @@ class FollowSerializer(serializers.ModelSerializer):
                 fields=('user', 'following'),
                 message=('Author subscription already set')
             )
-        ]   
-        
+        ]
+
     def validate(self, data):
         if data['user'] == data['following']:
             raise serializers.ValidationError('No way for own subscription')

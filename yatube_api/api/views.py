@@ -8,7 +8,7 @@ from rest_framework import permissions, mixins
 from .permissions import IsAuthorOrReadOnly
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework import filters
-from django_filters.rest_framework import DjangoFilterBackend
+# from django_filters.rest_framework import DjangoFilterBackend
 
 
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
@@ -58,9 +58,9 @@ class FollowViewSet(mixins.CreateModelMixin, mixins.ListModelMixin,
     permission_classes = [
         permissions.IsAuthenticated
     ]
-    filter_backends = (DjangoFilterBackend, filters.SearchFilter)
+    filter_backends = (filters.SearchFilter,)
 
-    search_fields = ['following__username']
+    search_fields = ['following__username', 'user__username']
 
     def get_queryset(self):
         return self.request.user.follower.all()

@@ -1,13 +1,18 @@
-from django.contrib import admin
-from django.urls import include, path
-from django.views.generic import TemplateView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import GroupViewSet, PostViewSet, CommentViewSet, FollowViewSet
+
+router = DefaultRouter()
+
+router.register('groups', GroupViewSet, basename='groups')
+router.register('posts', PostViewSet, basename='posts')
+router.register(r'posts/(?P<post_id>\d+)/comments',
+                CommentViewSet, basename='comments')
+router.register('follow', FollowViewSet, basename='follow')
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
-    path(
-        'redoc/',
-        TemplateView.as_view(template_name='redoc.html'),
-        name='redoc'
-    ),
+    path('v1/', include(router.urls)),
+    path('v1/', include('djoser.urls')),
+    path('v1/', include('djoser.urls.jwt')),
 ]

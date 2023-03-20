@@ -4,7 +4,7 @@
 
 This project API Final Yatube created for publish, update, delete and read of information in the posts and comments.
 As well there implemented groups section and followers application posibilities.
-Applied features like Django and API, REST Django Framework as permissions, mixins, filters,  serializers, filters, viewsets, pagination, routers, serializers, relations, validators, as well applied JWT-token for authentication.
+Applied features like Django and API, REST Django Framework as permissions, mixins, serializers, filters, viewsets, pagination, routers, serializers, relations, validators, as well applied JWT-token for authentication.
 
 
 ##### For some endpoints and requests methods of the project please refer to here:

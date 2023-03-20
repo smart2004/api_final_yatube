@@ -1,20 +1,57 @@
-# api_final
+# api_final by @smart200481 <Mikhail Sutormin>
 
 ### Brief Description
 
 This project API Final Yatube created for publish, update, delete and read of information in the posts and comments.
 As well there implemented groups section and followers application posibilities.
+Applied features like Django and API, REST Django Framework as permissions, mixins, filters,  serializers, filters, viewsets, pagination, routers, serializers, relations, validators, as well applied JWT-token for authentication.
 
 
-##### For endpoints and requests methods of the project please refer to here:
+##### For some endpoints and requests methods of the project please refer to here:
 
 ###### api/v1/posts/
 
 http://127.0.0.1:8000/api/v1/posts/
 **GET-request**
 
+###### Response data example:
+[
+    {
+        "id": 1,
+        "author": "smart2004",
+        "text": "qwerty",
+        "pub_date": "2023-03-18T21:20:28.930072Z",
+        "image": null,
+        "group": 1
+    },
+    {
+        "id": 2,
+        "author": "admin",
+        "text": "wertyu",
+        "pub_date": "2023-03-18T21:53:43.820866Z",
+        "image": null,
+        "group": null
+    }
+]
+
 http://127.0.0.1:8000/api/v1/posts/
 **POST-request**
+
+###### Input data example:
+{
+    "text": "qwerty",
+    "group": "1"
+}
+
+###### Response data example:
+{
+    "id": 3,
+    "author": "smart2004",
+    "text": "qwerty",
+    "pub_date": "2023-03-20T22:02:03.986440Z",
+    "image": null,
+    "group": 1
+}
 
 
 ###### api/v1/posts/{id}/
@@ -22,77 +59,58 @@ http://127.0.0.1:8000/api/v1/posts/
 http://127.0.0.1:8000/api/v1/posts/{id}/
 **GET-request**
 
+###### Response data example:
+{
+    "id": 1,
+    "author": "smart2004",
+    "text": "qwerty",
+    "pub_date": "2023-03-18T21:20:28.930072Z",
+    "image": null,
+    "group": 1
+}
+
 http://127.0.0.1:8000/api/v1/posts/{id}/
 **PUT-request**
+
+###### Input data example:
+{
+    "text": "qwerty ytrewq",
+    "group": "1"
+}
+
+###### Response data example:
+{
+    "id": 1,
+    "author": "smart2004",
+    "text": "qwerty ytrewq",
+    "pub_date": "2023-03-18T21:20:28.930072Z",
+    "image": null,
+    "group": 1
+}
 
 http://127.0.0.1:8000/api/v1/posts/{id}/
 **PATCH-request**
 
+###### Input data example:
+{
+    "text": "qwerty"
+}
+
+###### Response data example:
+{
+    "id": 1,
+    "author": "smart2004",
+    "text": "qwerty",
+    "pub_date": "2023-03-18T21:20:28.930072Z",
+    "image": null,
+    "group": 1
+}
+
 http://127.0.0.1:8000/api/v1/posts/{id}/
 **DELETE-request**
 
-
-###### api/v1/posts/{post_id}/comments/
-
-http://127.0.0.1:8000/api/v1/posts/{post_id}/comments/
-**GET-request**
-
-http://127.0.0.1:8000/api/v1/posts/{post_id}/comments/
-**POST-request**
-
-
-###### api/v1/posts/{post_id}/comments/{id}/
-
-http://127.0.0.1:8000/api/v1/posts/{post_id}/comments/{id}/
-**GET-request**
-
-http://127.0.0.1:8000/api/v1/posts/{post_id}/comments/{id}/
-**PUT-request**
-
-http://127.0.0.1:8000/api/v1/posts/{post_id}/comments/{id}/
-**PATCH-request**
-
-http://127.0.0.1:8000/api/v1/posts/{post_id}/comments/{id}/
-**DELETE-request**
-
-
-###### api/v1/groups/
-
-http://127.0.0.1:8000/api/v1/groups/
-**GET-request**
-
-
-###### api/v1/groups/{id}/
-
-http://127.0.0.1:8000/api/v1/groups/{id}/
-**GET-request**
-
-
-###### api/v1/follow/
-
-http://127.0.0.1:8000/api/v1/follow/
-**GET-request**
-
-http://127.0.0.1:8000/api/v1/follow/
-**POST-request**
-
-
-#### api/v1/jwt/create/
-
-http://127.0.0.1:8000/api/v1/jwt/create/
-**POST-request**
-
-
-#### api/v1/jwt/refresh/
-
-http://127.0.0.1:8000/api/v1/jwt/refresh/
-**POST-request**
-
-
-#### api/v1/jwt/verify/
-
-http://127.0.0.1:8000/api/v1/jwt/verify/
-**POST-request**
+###### Response data example:
+[]
 
 
 #### For further details please refer: http://127.0.0.1:8000/redoc/

@@ -6,14 +6,26 @@ from posts.models import Comment, Post, Group, Follow, User
 
 
 class PostSerializer(serializers.ModelSerializer):
+    """
+    PostSerializer class related to Posts.
+
+    This will refer to class Post in models file
+    and output information as it shown below in fields.
+    """
     author = SlugRelatedField(slug_field='username', read_only=True)
 
     class Meta:
         model = Post
-        fields = ('id', 'author', 'text'[:5], 'pub_date', 'image', 'group')
+        fields = ('id', 'author', 'text', 'pub_date', 'image', 'group')
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    """
+    CommentSerializer class related to Comments.
+
+    This will refer to class Comment in models file
+    and output information as it shown below in fields.
+    """
     author = serializers.SlugRelatedField(
         read_only=True, slug_field='username'
     )
@@ -25,21 +37,29 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class GroupSerializer(serializers.ModelSerializer):
+    """
+    GroupSerializer class related to Groups.
 
+    This will refer to class Group in models file
+    and output information as it shown below in fields.
+    """
     class Meta:
         model = Group
         fields = ('id', 'title', 'slug', 'description')
 
 
 class FollowSerializer(serializers.ModelSerializer):
+    """
+    FollowSerializer class related to Followers.
+
+    This will refer to class Follow in models file
+    and output information as it shown below in fields.
+    """
     user = serializers.SlugRelatedField(
         slug_field='username',
         queryset=User.objects.all(),
         default=serializers.CurrentUserDefault()
     )
-#    def perform_create(self, serializer):
-#        serializer.save(user=self.request.user)
-
     following = serializers.SlugRelatedField(
         slug_field='username',
         queryset=User.objects.all()

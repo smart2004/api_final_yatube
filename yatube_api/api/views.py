@@ -1,14 +1,15 @@
-# TODO:  Напишите свой вариант
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets
+
 from posts.models import Group, Post
+from .permissions import IsAuthorOrReadOnly
 from .serializers import GroupSerializer, PostSerializer
 from .serializers import CommentSerializer, FollowSerializer
-from rest_framework import permissions, mixins
-from .permissions import IsAuthorOrReadOnly
-from rest_framework.pagination import LimitOffsetPagination
+
+from rest_framework import permissions
+from rest_framework import mixins
 from rest_framework import filters
-# from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets
+from rest_framework.pagination import LimitOffsetPagination
 
 
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
@@ -16,7 +17,7 @@ class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
+        permissions.AllowAny
     ]
 
 
@@ -51,8 +52,10 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user, post=post)
 
 
-class FollowViewSet(mixins.CreateModelMixin, mixins.ListModelMixin,
-                    viewsets.GenericViewSet):
+class FollowViewSet(
+    mixins.CreateModelMixin, mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
     """This FollowViewSet is created for Followers"""
     serializer_class = FollowSerializer
     permission_classes = [
